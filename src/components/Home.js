@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Home = () => {
   return (
-      <div className="container container-fluid">
+      <Fragment>
             <h1 id="products_heading">Latest Products</h1>
 
             <section id="products" className="container mt-5">
                 <div className="row">
                     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
                         <div className="card p-3 rounded">
-                            <img
+                            <img alt=''
                                 className="card-img-top mx-auto"
                                 src="https://m.media-amazon.com/images/I/617NtexaW2L._AC_UY218_.jpg"
                             />
@@ -33,7 +33,7 @@ const Home = () => {
                 </div>
         
             </section>
-            </div>
+        </Fragment>    
            
            
         
