@@ -16,10 +16,10 @@ import {
     // UPDATE_PRODUCT_REQUEST,
     // UPDATE_PRODUCT_SUCCESS,
     // UPDATE_PRODUCT_FAIL,
-    // PRODUCT_DETAILS_REQUEST,
-    // PRODUCT_DETAILS_SUCCESS,
-    // PRODUCT_DETAILS_FAIL,
-    // NEW_REVIEW_REQUEST,
+    PRODUCT_DETAILS_REQUEST,
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_DETAILS_FAIL,
+    // NEW_REVIEW_REQUEST, 
     // NEW_REVIEW_SUCCESS,
     // NEW_REVIEW_FAIL,
     // GET_REVIEWS_REQUEST,
@@ -58,6 +58,26 @@ export const getProducts  =() => async (dispatch) => {
         })
     }
 }
+export const getProductDetails = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: PRODUCT_DETAILS_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/product/${id}`)
+
+        dispatch({
+            type: PRODUCT_DETAILS_SUCCESS,
+            payload: data.product
+        })
+
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
 
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {
