@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react'
+import  Pagination  from 'react-js-pagination'
 import MetaData from './layouts/MetaData';
 
 import Product from './product/Product'
@@ -10,20 +11,26 @@ import { getProducts } from '../actions/productActions'
 import { useAlert } from 'react-alert';
 
 const Home = () => {
+    const [currentPage, setCurrentPage] = useState(1)
     const alert=useAlert();
     const dispatch= useDispatch();
-    const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products)
+    const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products)
 
     useEffect(() => {
         if (error) {
             return alert.error(error)
         }
-        dispatch(getProducts());
+        dispatch(getProducts(currentPage));
 
         
 
+ 
+    }, [dispatch, alert,error,currentPage])
 
-    }, [dispatch, alert,error])
+    function setCurrentPageNo(pageNumber) {
+        setCurrentPage(pageNumber)
+    }
+
 
          
 
@@ -46,10 +53,26 @@ const Home = () => {
                 </div>
 
             </section>
-            </Fragment>             
+            <div className="d-flex justify-content-center mt-5">
+                            <Pagination
+                                activePage={currentPage}
+                                itemsCountPerPage={resPerPage}
+                                totalItemsCount={productsCount}
+                                onChange={setCurrentPageNo}
+                                nextPageText={'Next'}
+                                prevPageText={'Prev'}
+                                firstPageText={'First'}
+                                lastPageText={'Last'}
+                                itemClass="page-item"
+                                linkClass="page-link"
+                            />
+            </div>                       
+                    
+
+                                   
 
             
-           
+            </Fragment>                                     
           )}
     </Fragment>           
   )    
