@@ -91,7 +91,6 @@ export const register = (userData) => async (dispatch) => {
         })
     }
 }
-
 // Load user
 export const loadUser = () => async (dispatch) => {
     try {
