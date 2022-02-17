@@ -4,14 +4,20 @@ import MetaData from './layouts/MetaData';
 
 import Product from './product/Product'
 import Loader from './layouts/Loader';
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css';
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getProducts } from '../actions/productActions'
 import { useAlert } from 'react-alert';
 
+const { createSliderWithTooltip } = Slider;
+const Range = createSliderWithTooltip(Slider.Range)
+
 const Home = ({ match }) => {
     const [currentPage, setCurrentPage] = useState(1)
+    const [price, setPrice] = useState([1, 1000])
     const alert=useAlert();
     const dispatch= useDispatch();
     const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products)
@@ -22,12 +28,12 @@ const Home = ({ match }) => {
         if (error) {
             return alert.error(error)
         }
-        dispatch(getProducts(keyword,currentPage));
+        dispatch(getProducts(keyword,currentPage,price));
 
         
 
  
-    }, [dispatch, alert,error,keyword,currentPage])
+    }, [dispatch, alert,error,keyword,currentPage,price])
 
     function setCurrentPageNo(pageNumber) {
         setCurrentPage(pageNumber)
