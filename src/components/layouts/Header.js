@@ -3,23 +3,23 @@ import { Route, Link } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
-// import { logout } from '../../actions/userActions'
+import { logout } from '../../actions/userActions'
 
 import Search from './Search'
 
 import '../../App.css'
 
 const Header = () => {
-    // const alert = useAlert();
-    // const dispatch = useDispatch();
+    const alert = useAlert();
+    const dispatch = useDispatch();
 
     const { user, loading } = useSelector(state => state.auth)
     // const { cartItems } = useSelector(state => state.cart)
 
-    // const logoutHandler = () => {
-    //     dispatch(logout());
-    //     alert.success('Logged out successfully.')
-    // }
+    const logoutHandler = () => {
+        dispatch(logout());
+        alert.success('Logged out successfully.')
+    }
 
     return (
         <Fragment>
@@ -68,7 +68,7 @@ const Header = () => {
                                 )}
                                 
                                 <Link className="dropdown-item" to="/me">Profile</Link>
-                                <Link className="dropdown-item text-danger" to="/">
+                                <Link className="dropdown-item text-danger" to="/"onClick={logoutHandler}>
                                     Logout
                                 </Link>
 
