@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { productsReducer,newProductReducer, productDetailsReducer ,productReducer,newReviewReducer} from './reducers/productReducers'
-import { authReducer, userReducer, forgotPasswordReducer } from './reducers/userReducers'
+import { authReducer, userReducer, forgotPasswordReducer,allUsersReducer } from './reducers/userReducers'
 import { cartReducer } from './reducers/cartReducers';
 import { newOrderReducer, myOrdersReducer,orderDetailsReducer,allOrdersReducer,orderReducer } from './reducers/orderReducer';
 
@@ -17,7 +17,7 @@ const reducer = combineReducers({
     // review: reviewReducer,
     auth: authReducer,
     user: userReducer,
-    // allUsers: allUsersReducer,
+    allUsers: allUsersReducer,
     // userDetails: userDetailsReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
