@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 
-import MetaData from '../layouts/MetaData'
+import MetaData from '../cart/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 
 import { useAlert } from 'react-alert'
@@ -106,7 +106,7 @@ const Payment = ({ history }) => {
                         status: result.paymentIntent.status
                     }
 
-                    // dispatch(createOrder(order))
+                    dispatch(createOrder(order))
 
                     history.push('/success')
                 } else {
